@@ -43,7 +43,9 @@ void rr_calculate_waiting_time(Process *p, int len, Quantum q)
 
 				if (calc_response_time[i] == FALSE)
 				{
-					p[i].response_time = curr_time - p[i].arrive_time;
+					// BUG - erro no calculo
+					//p[i].response_time = curr_time - p[i].arrive_time; 
+					p[i].response_time = curr_time; 
 
 					calc_response_time[i] = TRUE;
 
@@ -68,6 +70,10 @@ void rr_calculate_waiting_time(Process *p, int len, Quantum q)
 					remain_burst_time[i] = 0;
 
 				}
+				// tempo de retorno calc
+				if (remain_burst_time[i] == 0){
+					p[i].return_time = curr_time;
+				}
 			}
 		}
 
@@ -86,12 +92,11 @@ void rr_calculate_turnaround_time(Process *p, int len)
 {
 	int i;
 
-
-
-	for (i = 0; i < len; i++)
+	for (i = 0; i < len; i++){
 		p[i].turnaround_time = p[i].burst + p[i].waiting_time - p[i].arrive_time;
-
+	}
 }
+
 
 
 void rr_print_gantt_chart(Process *p, int len, Quantum q)
@@ -353,7 +358,38 @@ void rr_print_gantt_chart(Process *p, int len, Quantum q)
 
 
 void RR(Process *p, int len, Quantum quantum) {
-    printf("Round-Robin: Implememtar e devolver no final, o tempo de espera, tempo de retorno e o tempo de resposta");
+	int i;
+    int total_waiting_time = 0;
+    int total_turnaround_time = 0;
+    int total_response_time = 0;
+
+	process_init(p, len);
+
+	merge_sort_by_arrive_time(p, 0, len);
+
+	// calculando tempo de espera
+	rr_calculate_waiting_time(p, len, quantum);
+
+	// tempo de retorno
+	rr_calculate_turnaround_time(p, len);
+
+
+    for (i = 0; i < len; i++)
+    {
+        total_waiting_time += p[i].waiting_time;
+        total_turnaround_time += p[i].turnaround_time;
+        total_response_time += p[i].response_time;
+    }
+	printf("Round-Robin: Implememtado pelo aluno. \n");
+
+
+    rr_print_gantt_chart(p, len, quantum);
+    printf("\n\tAverage Waiting Time     : %-2.2lf\n", (double)total_waiting_time / (double)len);
+    printf("\tAverage Turnaround Time  : %-2.2lf\n", (double)total_turnaround_time / (double)len);
+    printf("\tAverage Response Time    : %-2.2lf\n\n", (double)total_response_time / (double)len);
+
+    print_table(p, len);
+
 }
 
 #endif
