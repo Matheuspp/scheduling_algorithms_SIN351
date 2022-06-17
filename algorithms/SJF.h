@@ -137,7 +137,7 @@ void sjf_print_gantt_chart(Process *p, int len)
 
 
 void SJF(Process *p, int len){
-		int i;
+	int i;
     int total_waiting_time = 0;
     int total_turnaround_time = 0;
     int total_response_time = 0;
