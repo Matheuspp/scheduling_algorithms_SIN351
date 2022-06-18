@@ -8,14 +8,21 @@ Este projeto propõe ao estudante a implementação dos algoritmos de escaloname
 Basta executar o comando:
 '''make run'''
 <br />
-## observações:
+## Implementação:
 Foram implementados diversos algorimos de escalonamento, sendo eles:<br />
 Round-robin (Round-robin scheduling)<br />
 First Come First Serve (FCFS) <br />
 Shortest Job First (SJF) <br />
 Shortest Remaining Time Next (SRTN) <br />
 Lotery <br />
-
+## OBS:
+Aparentemente o comando '''system("pause")''' não funciona muito bem no linux.
+Não mudei nada pois o código base já estava assim. Aqui um link útil: [1]https://stackoverflow.com/questions/1107705/systempause-why-is-it-wrong
+<br />
+O algoritmo de loteria pode ser preemptivo ou não preemptivo, como nos parametros
+do código base não tinha nenhum quantum especificado, eu implementei o não preemptivo.
 # github repo
 [sin351-project]https://github.com/Matheuspp/scheduling_algorithms_SIN351
+
+
 
