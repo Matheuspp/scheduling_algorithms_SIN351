@@ -17,7 +17,7 @@ Shortest Remaining Time Next (SRTN) <br />
 Lotery <br />
 ## OBS:
 Aparentemente o comando '''system("pause")''' não funciona muito bem no linux.
-Não mudei nada pois o código base já estava assim. Aqui um link útil: [1]https://stackoverflow.com/questions/1107705/systempause-why-is-it-wrong <br /><br /><
+Não mudei nada pois o código base já estava assim. Aqui um link útil: [1]https://stackoverflow.com/questions/1107705/systempause-why-is-it-wrong <br />
 
 
 O algoritmo de loteria pode ser preemptivo ou não preemptivo, como nos parametros
